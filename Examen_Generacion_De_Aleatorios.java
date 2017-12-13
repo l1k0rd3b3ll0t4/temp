@@ -5,9 +5,18 @@
  */
 package recuperacion_interfaces;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author root
+ * Numeros aleatorios
+ * java.util.Random aleatorio = new java.util.Random(System.currentTimeMillis());
+ * int numeroA = aleatorio.nextInt(ValorAleatorioMax);
  */
 public class Examen_Generacion_De_Aleatorios extends javax.swing.JFrame {
 
@@ -27,12 +36,32 @@ public class Examen_Generacion_De_Aleatorios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grupoBoton = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         panel2 = new javax.swing.JPanel();
         label1 = new javax.swing.JLabel();
         label2 = new javax.swing.JLabel();
         labelFichero = new javax.swing.JLabel();
         contenido = new javax.swing.JLabel();
+        labelCombinacion = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textoPantalla = new javax.swing.JTextArea();
+        combinaciones = new javax.swing.JSlider();
+        rbUno = new javax.swing.JRadioButton();
+        rbDos = new javax.swing.JRadioButton();
+        rb3 = new javax.swing.JRadioButton();
+        rbCuatro = new javax.swing.JRadioButton();
+        rbCinco = new javax.swing.JRadioButton();
+        rb6 = new javax.swing.JRadioButton();
+        rb7 = new javax.swing.JRadioButton();
+        rb8 = new javax.swing.JRadioButton();
+        rb9 = new javax.swing.JRadioButton();
+        rb10 = new javax.swing.JRadioButton();
+        botonNombreFichero = new javax.swing.JButton();
+        botonVM = new javax.swing.JButton();
+        botonVMxm = new javax.swing.JButton();
+        botonGenerarFichero = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         itemAcciones = new javax.swing.JMenu();
         itemAcercaDe = new javax.swing.JMenu();
@@ -46,20 +75,128 @@ public class Examen_Generacion_De_Aleatorios extends javax.swing.JFrame {
 
         labelFichero.setText("Fichero:");
 
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        textoPantalla.setColumns(20);
+        textoPantalla.setRows(5);
+        jScrollPane1.setViewportView(textoPantalla);
+
+        combinaciones.setMajorTickSpacing(1000);
+        combinaciones.setMaximum(10000);
+        combinaciones.setMinorTickSpacing(1000);
+        combinaciones.setPaintLabels(true);
+        combinaciones.setPaintTicks(true);
+        combinaciones.setSnapToTicks(true);
+        combinaciones.setToolTipText("");
+        combinaciones.setValue(0);
+
+        grupoBoton.add(rbUno);
+        rbUno.setText("1");
+
+        grupoBoton.add(rbDos);
+        rbDos.setText("2");
+
+        grupoBoton.add(rb3);
+        rb3.setText("3");
+
+        grupoBoton.add(rbCuatro);
+        rbCuatro.setText("4");
+
+        grupoBoton.add(rbCinco);
+        rbCinco.setText("5");
+
+        grupoBoton.add(rb6);
+        rb6.setSelected(true);
+        rb6.setText("6");
+
+        grupoBoton.add(rb7);
+        rb7.setText("7");
+
+        grupoBoton.add(rb8);
+        rb8.setText("8");
+
+        grupoBoton.add(rb9);
+        rb9.setText("9");
+
+        grupoBoton.add(rb10);
+        rb10.setText("10");
+
+        botonNombreFichero.setText("Establecer Nombre del Fichero");
+        botonNombreFichero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNombreFicheroActionPerformed(evt);
+            }
+        });
+
+        botonVM.setText("Establecer Valor Minimo");
+
+        botonVMxm.setText("Establecer Valor Maximo");
+
+        botonGenerarFichero.setText("Generar Fichero");
+        botonGenerarFichero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGenerarFicheroActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
         panel2.setLayout(panel2Layout);
         panel2Layout.setHorizontalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(124, 124, 124)
-                .addComponent(labelFichero, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(contenido, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panel2Layout.createSequentialGroup()
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(285, 285, 285)
+                        .addComponent(labelFichero, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(contenido, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel2Layout.createSequentialGroup()
+                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addGap(105, 105, 105)
+                                .addComponent(labelCombinacion, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(191, 191, 191)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(combinaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panel2Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(rbUno)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbDos)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rb3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbCuatro)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbCinco)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rb6))
+                                    .addGroup(panel2Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(botonNombreFichero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(botonVM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(botonVMxm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(18, 18, 18)
+                                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panel2Layout.createSequentialGroup()
+                                        .addComponent(rb7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rb8)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rb9)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rb10))
+                                    .addComponent(botonGenerarFichero, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(191, 191, 191)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         panel2Layout.setVerticalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -70,20 +207,52 @@ public class Examen_Generacion_De_Aleatorios extends javax.swing.JFrame {
                     .addComponent(label1)
                     .addComponent(labelFichero)
                     .addComponent(contenido, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(386, Short.MAX_VALUE))
+                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel2Layout.createSequentialGroup()
+                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelCombinacion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addComponent(combinaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbCuatro)
+                            .addComponent(rb3)
+                            .addComponent(rbDos)
+                            .addComponent(rbUno)
+                            .addComponent(rbCinco)
+                            .addComponent(rb6)
+                            .addComponent(rb7)
+                            .addComponent(rb8)
+                            .addComponent(rb9)
+                            .addComponent(rb10))
+                        .addGap(46, 46, 46)
+                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonGenerarFichero, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addComponent(botonNombreFichero)
+                                .addGap(28, 28, 28)
+                                .addComponent(botonVM)))
+                        .addGap(18, 18, 18)
+                        .addComponent(botonVMxm)
+                        .addGap(0, 81, Short.MAX_VALUE))
+                    .addGroup(panel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 29, Short.MAX_VALUE)
-                .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(panel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1);
@@ -99,9 +268,42 @@ public class Examen_Generacion_De_Aleatorios extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    private void botonNombreFicheroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNombreFicheroActionPerformed
+        //Establezco el nombre del fichero
+        nombreFichero="./"+JOptionPane.showInputDialog("Establecer Nombre de Fichero") + ".txt";
+        //lo muestro en el label  del contenido
+        contenido.setText(nombreFichero);
+    }//GEN-LAST:event_botonNombreFicheroActionPerformed
+
+    private void botonGenerarFicheroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarFicheroActionPerformed
+        generarFichero();
+    }//GEN-LAST:event_botonGenerarFicheroActionPerformed
+
+    
+    public void generarFichero(){
+        //Guardo el valor del slider en el label generado 
+        int numeroCombinaciones = combinaciones.getValue();
+        labelCombinacion.setText(Integer.toString(numeroCombinaciones));
+        File fichero  = new File(nombreFichero);
+        FileWriter fw;
+        try{
+            
+            fw = new FileWriter(fichero);
+            String textoArea="";
+        String estructura ="";
+        int numero[] = new int[grupoBoton.getButtonCount()];
+           for(int i =0 ; i < numeroCombinaciones;i++ ){
+                for(int j =0; j< numero.length; j++){
+                    numero[j] = (int)(Math.random()*48+1);
+                     textoArea= i + ":" +numero[j];
+                     
+                }
+                textoPantalla.setText(textoArea);
+           }
+        }catch(FileNotFoundException fnfe){
+            
+        }catch(IOException ioe){ }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -133,16 +335,36 @@ public class Examen_Generacion_De_Aleatorios extends javax.swing.JFrame {
             }
         });
     }
-
+    String nombreFichero;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonGenerarFichero;
+    private javax.swing.JButton botonNombreFichero;
+    private javax.swing.JButton botonVM;
+    private javax.swing.JButton botonVMxm;
+    private javax.swing.JSlider combinaciones;
     private javax.swing.JLabel contenido;
+    private javax.swing.ButtonGroup grupoBoton;
     private javax.swing.JMenu itemAcciones;
     private javax.swing.JMenu itemAcercaDe;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label1;
     private javax.swing.JLabel label2;
+    private javax.swing.JLabel labelCombinacion;
     private javax.swing.JLabel labelFichero;
     private javax.swing.JPanel panel2;
+    private javax.swing.JRadioButton rb10;
+    private javax.swing.JRadioButton rb3;
+    private javax.swing.JRadioButton rb6;
+    private javax.swing.JRadioButton rb7;
+    private javax.swing.JRadioButton rb8;
+    private javax.swing.JRadioButton rb9;
+    private javax.swing.JRadioButton rbCinco;
+    private javax.swing.JRadioButton rbCuatro;
+    private javax.swing.JRadioButton rbDos;
+    private javax.swing.JRadioButton rbUno;
+    private javax.swing.JTextArea textoPantalla;
     // End of variables declaration//GEN-END:variables
 }
